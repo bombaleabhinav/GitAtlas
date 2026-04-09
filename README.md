@@ -1,6 +1,6 @@
 # Gitatlas 🌌
 
-> Visual repository intelligence system for exploring commit history as a structured timeline
+> Understand how code evolves.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -10,179 +10,143 @@
 
 ## Overview
 
-Gitatlas is a web-based system for analyzing and visualizing GitHub repositories.
-It transforms commit history into an interactive, navigable timeline, allowing users to study how a codebase evolves over time.
+Gitatlas is a visual system for exploring GitHub repositories through their history.
 
-Instead of reading sequential logs, users interact with a structured graph of commits, where each node represents a checkpoint in the repository’s development.
+It transforms commit logs into an interactive timeline, allowing developers to understand how a codebase evolved over time. Instead of scanning through a list of commits, users navigate a structured graph where each node represents a meaningful checkpoint in development.
 
 ---
 
 ## Core Concept
 
-A repository is modeled as a directed timeline of changes:
+A repository is treated as a sequence of connected changes rather than isolated entries.
 
-| Concept          | Representation in Gitatlas          |
-| ---------------- | ----------------------------------- |
-| Repository       | Timeline / Graph structure          |
-| Commit           | Node (checkpoint)                   |
-| Commit relation  | Directed edge                       |
-| Time progression | Top-left to bottom directional flow |
-| Activity density | Node distribution and clustering    |
+* Commits become checkpoints
+* Relationships become paths
+* Time becomes a navigable direction
+* Contributions become visible patterns
+
+This shifts the experience from reading logs to exploring evolution.
 
 ---
 
 ## ✨ Features
 
-* **Timeline Visualization**
-  Structured graph representation of commit history with directional flow
+* **Visual Timeline**
+  Commit history rendered as a flowing graph instead of a linear list
 
 * **Commit Inspection**
-  Detailed view of individual commits including metadata and changes
+  View metadata such as message, author, timestamp, and change stats
 
-* **Repository Metrics**
-  Aggregated statistics derived from commit data
-
-* **Contributor Analysis**
-  Visibility into contribution patterns across time
-
-* **Anomaly Detection ⚠️**
-  Identification of commits containing potentially sensitive data
+* **Interactive Exploration**
+  Hover for quick details and click for deeper insights
 
 * **Contextual Summaries 🧠**
-  Condensed explanations of commit intent and impact
+  Concise explanations of commit intent
+
+* **Contributor Visibility**
+  Understand participation across time
+
+* **Risk Detection ⚠️**
+  Highlights potential issues such as exposed keys or configuration leaks
 
 ---
 
 ## Interaction Model
 
-### Timeline View
+The interface is designed around lightweight interaction.
 
-The primary interface renders commit history as a directed graph.
+**Hover**
 
-| Component | Description                               |
-| --------- | ----------------------------------------- |
-| Nodes     | Represent commits                         |
-| Edges     | Represent parent-child relationships      |
-| Layout    | Diagonal progression (top-left to bottom) |
-| Rendering | Sequential to reflect temporal ordering   |
+* Quick preview of commit message, author, and timestamp
 
----
+**Click**
 
-### Hover Interaction
+* Opens a detailed panel with:
 
-Provides a quick summary without leaving the timeline.
+  * summary
+  * contributors
+  * file changes
+  * additions and deletions
 
-| Field     | Description          |
-| --------- | -------------------- |
-| Message   | Commit message       |
-| Author    | Contributor name     |
-| Timestamp | Commit date and time |
-
----
-
-### Commit Detail View
-
-Selecting a node opens a detailed inspection panel.
-
-| Section         | Description                         |
-| --------------- | ----------------------------------- |
-| Summary         | Condensed explanation of the commit |
-| Contributors    | Associated authors                  |
-| Timestamp       | Exact commit time                   |
-| File Changes    | Files modified                      |
-| Diff Statistics | Lines added and removed             |
+This allows fast scanning without losing depth.
 
 ---
 
 ## 📊 Repository Insights
 
-Gitatlas extracts and integrates repository-level analytics into the visualization.
+Gitatlas provides an overview of repository activity:
 
-| Metric                 | Description                       |
-| ---------------------- | --------------------------------- |
-| Total Commits          | Total number of commits           |
-| Commits per Day        | Distribution of commits over time |
-| Active Contributors    | Unique contributors               |
-| Contribution Frequency | Activity trends                   |
-| Change Volume          | Aggregate additions and deletions |
+* total commits
+* activity distribution over time
+* contributor participation
+* change volume trends
+
+These insights are integrated into the visual flow rather than isolated dashboards.
 
 ---
 
 ## Analysis Capabilities
 
-### Commit Classification
+Commits are categorized to improve readability:
 
-| Type     | Description             |
-| -------- | ----------------------- |
-| Feature  | Functional additions    |
-| Fix      | Bug corrections         |
-| Refactor | Structural improvements |
-| Minor    | Non-critical updates    |
+* **Feature** — new functionality
+* **Fix** — bug resolution
+* **Refactor** — structural improvements
+* **Minor** — small or non-critical updates
 
----
+The system also flags commits containing sensitive patterns such as:
 
-### Risk Detection ⚠️
-
-| Condition             | Method                        |
-| --------------------- | ----------------------------- |
-| API key exposure      | Pattern matching              |
-| `.env` file inclusion | File inspection               |
-| Hardcoded credentials | Keyword and pattern detection |
-
-Flagged commits are highlighted within the timeline.
+* API keys
+* `.env` files
+* hardcoded credentials
 
 ---
 
 ## ⚙️ Architecture
 
-| Layer         | Responsibility                                 |
-| ------------- | ---------------------------------------------- |
-| Data Fetch    | Retrieve commit data via GitHub APIs           |
-| Processing    | Normalize commit structure and relationships   |
-| Analysis      | Classification, aggregation, anomaly detection |
-| Visualization | Graph generation and rendering                 |
+The system is divided into clear layers:
+
+* **Frontend**
+  Handles visualization, interaction, and rendering
+
+* **Backend**
+  Fetches and processes commit data
+
+* **Analysis Layer**
+  Classifies commits and detects anomalies
+
+* **Visualization Layer**
+  Constructs and displays the graph
 
 ---
 
 ## 📖 Usage
 
-1. Provide a GitHub repository URL
+1. Paste a GitHub repository URL
 2. Trigger analysis
 3. Explore the generated timeline
-4. Inspect commits for detailed information
+4. Inspect commits for detailed context
 
 ---
 
 ## 🎯 Use Cases
 
-| Scenario         | Outcome                               |
-| ---------------- | ------------------------------------- |
-| Onboarding       | Understand project evolution quickly  |
-| Debugging        | Identify when changes were introduced |
-| Code Review      | Examine changes with context          |
-| Project Analysis | Evaluate development patterns         |
-
----
-
-## Limitations
-
-* Performance may degrade on very large repositories
-* Commit classification is heuristic-based
-* Visualization assumes primarily linear commit progression
+* onboarding into unfamiliar codebases
+* understanding system evolution
+* debugging historical changes
+* reviewing contribution patterns
 
 ---
 
 ## Team
 
-Built by:
+Built by:Abhinav and Neha
 
-* [Your Name]
-* [Team Member]
-* [Team Member]
-* [Team Member]
 
----
+* [Abhinav Bombale]
+* [Neha Lende]
 
-## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+
+
+
