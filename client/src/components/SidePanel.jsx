@@ -40,13 +40,17 @@ export default function SidePanel({ commit, onClose }) {
     fetchSummary();
   }, [commit]);
 
+  const isBad = commit?.containsSecret || summary?.type === 'bugfix';
+  
   const typeColors = {
-    feature: 'text-green-400 bg-green-400/10 border-green-400/20',
-    bugfix: 'text-zinc-300 bg-zinc-500/10 border-zinc-500/20',
-    refactor: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
-    minor: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+    feature: 'text-green-500 bg-green-500/10 border-green-500/20',
+    bugfix: 'text-red-500 bg-red-500/10 border-red-500/20',
+    refactor: 'text-green-500 bg-green-500/10 border-green-500/20',
+    minor: 'text-green-500 bg-green-500/10 border-green-500/20',
     secret: 'text-red-500 bg-red-500/10 border-red-500/30'
   };
+
+  const accentColor = isBad ? 'text-red-500' : 'text-green-500';
 
   return (
     <AnimatePresence>
@@ -56,11 +60,11 @@ export default function SidePanel({ commit, onClose }) {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '100%', opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="absolute top-0 right-0 w-full md:w-[480px] h-full bg-[#08051a]/95 backdrop-blur-2xl border-l border-white/10 p-6 z-50 overflow-y-auto"
+          className="absolute top-0 right-0 w-full md:w-[480px] h-full bg-black/95 backdrop-blur-2xl border-l border-white/10 p-6 z-50 overflow-y-auto"
         >
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <GitCommit className="text-cyan-400" />
+              <GitCommit className={accentColor} />
               Commit Details
             </h2>
             <button 
@@ -73,22 +77,22 @@ export default function SidePanel({ commit, onClose }) {
           
           {commit.containsSecret && (
             <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-start gap-3">
-              <AlertTriangle className="text-red-400 shrink-0 mt-0.5" size={20} />
+              <AlertTriangle className="text-red-500 shrink-0 mt-0.5" size={20} />
               <div>
-                <h3 className="text-red-400 font-medium mb-1">Security Warning</h3>
-                <p className="text-red-300/70 text-sm">Potential secret found in this commit&apos;s patch or message.</p>
+                <h3 className="text-red-500 font-medium mb-1">Security Warning</h3>
+                <p className="text-white/70 text-sm">Potential secret found in this commit&apos;s patch or message.</p>
               </div>
             </div>
           )}
 
           <div className="space-y-6">
             {/* AI Summary Section */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                 <Cpu size={100} />
               </div>
               
-              <h3 className="text-sm text-cyan-400 font-medium flex items-center gap-2 mb-3">
+              <h3 className={`text-sm ${accentColor} font-medium flex items-center gap-2 mb-3`}>
                 <Cpu size={16} /> AI Analysis
               </h3>
               
@@ -98,10 +102,10 @@ export default function SidePanel({ commit, onClose }) {
                   <div className="h-4 bg-white/10 rounded w-1/2"></div>
                 </div>
               ) : error ? (
-                <p className="text-red-400 text-sm">{error}</p>
+                <p className="text-red-500 text-sm">{error}</p>
               ) : summary ? (
                 <div>
-                  <p className="text-lg font-medium mb-3">{summary.summary}</p>
+                  <p className="text-lg font-medium mb-3 text-white">{summary.summary}</p>
                   <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border ${typeColors[summary.type] || typeColors.minor}`}>
                     {summary.type.toUpperCase()}
                   </span>
@@ -111,23 +115,23 @@ export default function SidePanel({ commit, onClose }) {
 
             {/* Metadata Section */}
             <div className="space-y-4">
-              <div className="flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5">
+              <div className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
                 <User className="text-white/40 mt-1" size={18} />
                 <div>
                   <p className="text-xs text-white/40 mb-1">Author</p>
-                  <p className="font-medium">{commit.author}</p>
+                  <p className="font-medium text-white">{commit.author}</p>
                 </div>
               </div>
               
-              <div className="flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5">
+              <div className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
                 <Calendar className="text-white/40 mt-1" size={18} />
                 <div>
                   <p className="text-xs text-white/40 mb-1">Date</p>
-                  <p className="font-medium">{new Date(commit.date).toLocaleString()}</p>
+                  <p className="font-medium text-white">{new Date(commit.date).toLocaleString()}</p>
                 </div>
               </div>
               
-              <div className="flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5 flex-col w-full break-all">
+              <div className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/5 flex-col w-full break-all text-white/80">
                  <div className="flex gap-4">
                    <FileText className="text-white/40 mt-1 shrink-0" size={18} />
                    <div>
@@ -137,7 +141,7 @@ export default function SidePanel({ commit, onClose }) {
                  </div>
                  <div className="mt-2 pl-8">
                      <p className="text-xs text-white/40 mb-1">SHA</p>
-                     <a href={commit.url} target="_blank" rel="noreferrer" className="font-mono text-sm text-cyan-400 hover:underline">{commit.sha}</a>
+                     <a href={commit.url} target="_blank" rel="noreferrer" className="font-mono text-sm text-white hover:underline transition-all opacity-60 hover:opacity-100">{commit.sha}</a>
                  </div>
                  {commit.filesChanged !== undefined && (
                    <div className="mt-2 pl-8">
@@ -152,7 +156,7 @@ export default function SidePanel({ commit, onClose }) {
               href={commit.url}
               target="_blank"
               rel="noreferrer"
-              className="block w-full py-4 text-center rounded-xl bg-white/10 hover:bg-white/20 transition-colors font-medium border border-white/10"
+              className={`block w-full py-4 text-center rounded-xl transition-all font-bold border border-white/20 ${isBad ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-white text-black hover:bg-white/90'}`}
             >
               View on GitHub
             </a>

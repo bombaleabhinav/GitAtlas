@@ -71,10 +71,10 @@ export default function GraphView({ commits }) {
           source: prevCommit.sha,
           target: commit.sha,
           animated: true,
-          style: { stroke: 'rgba(14, 165, 233, 0.5)', strokeWidth: 2 },
+          style: { stroke: 'rgba(255, 255, 255, 0.2)', strokeWidth: 2 },
           markerEnd: {
             type: MarkerType.ArrowClosed,
-            color: 'rgba(14, 165, 233, 0.5)',
+            color: 'rgba(255, 255, 255, 0.2)',
           },
         });
       }
