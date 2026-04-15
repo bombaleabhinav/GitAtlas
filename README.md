@@ -1,17 +1,15 @@
 # Gitatlas 🌌
 
-> Visual repository intelligence system for exploring commit history as a structured timeline
+> Visualising Github Repositories! Explore a galaxy of commits.
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![React 18](https://img.shields.io/badge/react-18-61dafb.svg)](https://reactjs.org/)
+
 
 ---
 
 ## Overview
 
 Gitatlas is a web-based system for analyzing and visualizing GitHub repositories.
-It transforms commit history into an interactive, navigable timeline, allowing users to study how a codebase evolves over time.
+It transforms commit history into an navigable timeline, allowing users to study how a codebase evolves over time.
 
 Instead of reading sequential logs, users interact with a structured graph of commits, where each node represents a checkpoint in the repository’s development.
 
@@ -44,9 +42,6 @@ A repository is modeled as a directed timeline of changes:
 
 * **Contributor Analysis**
   Visibility into contribution patterns across time
-
-* **Anomaly Detection ⚠️**
-  Identification of commits containing potentially sensitive data
 
 * **Contextual Summaries 🧠**
   Condensed explanations of commit intent and impact
@@ -92,46 +87,9 @@ Selecting a node opens a detailed inspection panel.
 | File Changes    | Files modified                      |
 | Diff Statistics | Lines added and removed             |
 
----
-
-## 📊 Repository Insights
-
-Gitatlas extracts and integrates repository-level analytics into the visualization.
-
-| Metric                 | Description                       |
-| ---------------------- | --------------------------------- |
-| Total Commits          | Total number of commits           |
-| Commits per Day        | Distribution of commits over time |
-| Active Contributors    | Unique contributors               |
-| Contribution Frequency | Activity trends                   |
-| Change Volume          | Aggregate additions and deletions |
 
 ---
 
-## Analysis Capabilities
-
-### Commit Classification
-
-| Type     | Description             |
-| -------- | ----------------------- |
-| Feature  | Functional additions    |
-| Fix      | Bug corrections         |
-| Refactor | Structural improvements |
-| Minor    | Non-critical updates    |
-
----
-
-### Risk Detection ⚠️
-
-| Condition             | Method                        |
-| --------------------- | ----------------------------- |
-| API key exposure      | Pattern matching              |
-| `.env` file inclusion | File inspection               |
-| Hardcoded credentials | Keyword and pattern detection |
-
-Flagged commits are highlighted within the timeline.
-
----
 
 ## ⚙️ Architecture
 
@@ -175,14 +133,5 @@ Flagged commits are highlighted within the timeline.
 ## Team
 
 Built by:
-
-* [Your Name]
-* [Team Member]
-* [Team Member]
-* [Team Member]
-
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
+Abhinav Bombale
+Neha Lende
