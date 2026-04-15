@@ -10,7 +10,7 @@ export default function Home() {
         cursorRadius={220}
         cursorForce={0.1}
         bulgeOnly
-        bulgeStrength={42}
+        bulgeStrength={5}
         sparkle={false}
         waveAmplitude={0}
         dotColor="#fff"
